@@ -9,10 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
     EditText jetidentificacion, jetnombre, jetcarrera, jetsemestre;
     Button jbtadicionar, jbtconsultar, jbtmodificar, jbteliminar, jbtcancelar;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String identificacion, nombre, carrera, semestre;
+    String iduser;
+    FirebaseFirestore xt = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         jbtcancelar = findViewById(R.id.btcancelar);
 
 
+
         jbtadicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,11 +54,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        jbtconsultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+         Consultar();
+            }
+        });
+
+        jbtmodificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Modificar();
+            }
+        });
+
 
     }
 
     private void Adicionar() {
-        String identificacion, nombre, carrera, semestre;
         identificacion = jetidentificacion.getText().toString();
         nombre = jetnombre.getText().toString();
         carrera = jetcarrera.getText().toString();
@@ -67,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             user.put("Semestre", semestre);
 
 // Add a new document with a generated ID
-            db.collection("estudia")
+            xt.collection("Registro estudiantes")
                     .add(user)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
@@ -84,6 +105,73 @@ public class MainActivity extends AppCompatActivity {
                     });
         }
     }
+
+    private void Consultar(){
+        identificacion = jetidentificacion.getText().toString();
+        if (identificacion.isEmpty()){
+            Toast.makeText(this, "La identificacion es requerida", Toast.LENGTH_SHORT).show();
+            jetidentificacion.requestFocus();
+        }
+        xt.collection("Registro estudiantes")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                iduser=document.getId();
+                                jetnombre.setText(document.getString("Nombre"));
+                                jetcarrera.setText(document.getString("Carerra"));
+                                jetsemestre.setText(document.getString("Semestre"));
+                                Toast.makeText(MainActivity.this, "Registro encontrado", Toast.LENGTH_SHORT).show();
+
+                            }
+                        } else {
+                            Toast.makeText(MainActivity.this, "El registro no existe", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+
+
+   private void Modificar(){
+        identificacion = jetidentificacion.getText().toString();
+        nombre = jetnombre.getText().toString();
+        carrera = jetcarrera.getText().toString();
+        semestre = jetsemestre.getText().toString();
+        if (identificacion.isEmpty() || nombre.isEmpty() || carrera.isEmpty() || semestre.isEmpty()) {
+            Toast.makeText(this, "Todos los datos son requeridos", Toast.LENGTH_SHORT).show();
+            jetidentificacion.requestFocus();
+        } else {
+            Map<String, Object> user = new HashMap<>();
+            user.put("Identificacion", identificacion);
+            user.put("Nombre", nombre);
+            user.put("Carerra", carrera);
+            user.put("Semestre", semestre);
+
+            xt.collection("Registro estudiantes").document(iduser)
+                    .set(user)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(MainActivity.this, "Estudiante actualizada correctamente", Toast.LENGTH_SHORT).show();
+                            Limpiar_campos();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(MainActivity.this, "Error actualizando estudiante", Toast.LENGTH_SHORT).show();
+                        }
+
+                    });
+        }
+}
+
+
+
 
     private void Limpiar_campos() {
         jetidentificacion.setText("");

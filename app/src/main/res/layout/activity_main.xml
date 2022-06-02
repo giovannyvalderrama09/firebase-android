@@ -1,130 +1,131 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".MainActivity">
+
+<LinearLayout
+    android:layout_width="409dp"
+    android:layout_height="729dp"
+    android:orientation="vertical"
+    tools:layout_editor_absoluteX="1dp"
+    tools:layout_editor_absoluteY="1dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:textSize="30dp"
+        android:text="Estudiantes"
+        android:textColor="#4791d0"/>
+
+    <EditText
+        android:layout_marginTop="40dp"
+        android:id="@+id/etidentificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:hint="Identificacion" />
+
+    <EditText
+        android:layout_marginTop="15dp"
+        android:id="@+id/etnombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="25dp"
+        android:inputType="text"
+        android:gravity="center"
+        android:hint="Nombre" />
+
+    <EditText
+        android:id="@+id/etcarrera"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="25dp"
+        android:inputType="text"
+        android:gravity="center"
+        android:hint="Carrera" />
+
+    <EditText
+        android:id="@+id/etsemestre"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="25dp"
+        android:inputType="textPersonName"
+        android:gravity="center"
+        android:hint="Semestre" />
+
+
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+        <Button
+            android:layout_marginLeft="45dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/btadicionar"
             android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:text="Adicionar"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/btconsultar"
+            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_marginLeft="20dp"
+            android:text="Consultar"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginLeft="45dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/btmodificar"
+            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:text="modificar"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/bteliminar"
+            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_marginLeft="20dp"
+            android:text="Eliminar"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btcancelar"
+            android:layout_marginLeft="120dp"
+            android:layout_height="50dp"
+            android:layout_width="150dp"
+            android:text="cancelar"
             android:gravity="center"
-            android:layout_marginTop="30dp"
-            android:textSize="30dp"
-            android:text="Estudiantes"
-            android:textColor="#4791d0"/>
-
-        <EditText
-            android:layout_marginTop="40dp"
-            android:id="@+id/etidentificacion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:textSize="25dp"
-            android:gravity="center"
-            android:hint="Identificacion" />
-
-        <EditText
-            android:layout_marginTop="15dp"
-            android:id="@+id/etnombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:textSize="25dp"
-            android:inputType="text"
-            android:gravity="center"
-            android:hint="Nombre" />
-
-        <EditText
-            android:id="@+id/etcarrera"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:textSize="25dp"
-            android:inputType="text"
-            android:gravity="center"
-            android:hint="Carrera" />
-
-        <EditText
-            android:id="@+id/etsemestre"
-            android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:textSize="25dp"
-            android:inputType="textPersonName"
-            android:gravity="center"
-            android:hint="Semestre" />
-
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
-
-            <Button
-                android:layout_marginLeft="45dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/btadicionar"
-                android:layout_height="wrap_content"
-                android:layout_width="150dp"
-                android:text="Adicionar"
-                android:layout_gravity="center_horizontal"/>
-
-            <Button
-                android:id="@+id/btconsultar"
-                android:layout_height="wrap_content"
-                android:layout_width="150dp"
-                android:layout_marginLeft="20dp"
-                android:text="Consultar"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:layout_marginLeft="45dp"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/btmodificar"
-                android:layout_height="wrap_content"
-                android:layout_width="150dp"
-                android:text="modificar"
-                android:layout_gravity="center_horizontal"/>
-
-            <Button
-                android:id="@+id/bteliminar"
-                android:layout_height="wrap_content"
-                android:layout_width="150dp"
-                android:layout_marginLeft="20dp"
-                android:text="Eliminar"
-                android:layout_gravity="center_horizontal"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:id="@+id/btcancelar"
-                android:layout_marginLeft="120dp"
-                android:layout_height="50dp"
-                android:layout_width="150dp"
-                android:text="cancelar"
-                android:gravity="center"
-                />
-
-        </LinearLayout>
+            />
 
     </LinearLayout>
+
 </LinearLayout>
+</LinearLayout>
+
